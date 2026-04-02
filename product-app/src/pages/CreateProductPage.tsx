@@ -22,7 +22,7 @@ export default function CreateProductPage() {
       [e.target.name]: e.target.value
     });
   };
-
+// проверки полей
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
     if (!formData.title) newErrors.title = 'Название обязательно';

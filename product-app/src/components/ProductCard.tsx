@@ -1,8 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useProductsStore } from '../store/use-products-store';
 
-// Просто объявите тип прямо в файле
 interface Product {
   id: number;
   title: string;
@@ -16,8 +14,11 @@ interface ProductCardProps {
   product: Product;
 }
 
+// компонент карточки
 export default function ProductCard({ product }: ProductCardProps) {
+  //переключение
   const toggleLike = useProductsStore(state => state.toggleLike);
+  // удаление 
   const removeProduct = useProductsStore(state => state.removeProduct);
 
   return (

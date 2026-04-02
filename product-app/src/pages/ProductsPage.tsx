@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import FilterBar from '../components/FilterBar';
@@ -21,28 +21,28 @@ export default function ProductsPage() {
     ? products.filter(p => p.isLiked)
     : products;
 
-  if (loading) return <div style={{ padding: '20px', textAlign: 'center' }}>Загрузка...</div>;
-  if (error) return <div style={{ padding: '20px', textAlign: 'center', color: '#dc3545' }}>{error}</div>;
+  if (loading) return <div className="loading">Загрузка...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
-  <div className="container">
-    <div className="header">
-      <h1>Продукты</h1>
-      <Link to="/create-product">
-        <button className="btn btn-primary">Создать продукт</button>
-      </Link>
-    </div>
-    <FilterBar />
-    <div className="products-grid">
-      {filteredProducts.map(product => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
-    {filteredProducts.length === 0 && (
-      <div className="loading">
-        {filter === 'liked' ? 'Нет избранных продуктов' : 'Пока нет продуктов'}
+    <div className="container">
+      <div className="header">
+        <h1>Продукты</h1>
+        <Link to="/create-product">
+          <button className="btn btn-primary">Создать продукт</button>
+        </Link>
       </div>
-    )}
-  </div>
-);
+      <FilterBar />
+      <div className="products-grid">
+        {filteredProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+      {filteredProducts.length === 0 && (
+        <div className="loading">
+          {filter === 'liked' ? 'Нет избранных продуктов' : 'Пока нет продуктов'}
+        </div>
+      )}
+    </div>
+  );
 }
